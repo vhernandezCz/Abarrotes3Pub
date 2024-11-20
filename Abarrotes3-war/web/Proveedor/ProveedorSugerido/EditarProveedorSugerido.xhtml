@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Editar proveedor sugerido</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.4.0/dist/css/bootstrap.min.css" />
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta http-equiv="X-UA-Conpatible" content="IE=edge"/>
+
+        <link 
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+            rel="stylesheet" 
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+            crossorigin="anonymous"/>
+    </h:head>
+    <h:body>
+        <!--Encabezado-->
+        <nav class="navbar navbar-expand-lg navar-light" style="background-color: #250aca82;">
+            <div class="container-fluid" style="margin-left:4%;">
+                <a class="navbar-brand" href="../../menu.xhtml">
+                    <div style="background-color: white; border-radius: 50%;">
+                        <h:graphicImage value="../../Imagenes/logoPNG.png"  style="width: 190px; height: 100px; border-radius: 21px;"/>
+                    </div>
+                </a>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav" style="width: 40%;">
+                        <li class="navbar-nav" style="margin-left:4%;">
+                            <h4 class="text-white">Editar proveedor sugerido</h4>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <!--Formulario-->    
+        <h:form class="text-center" style="width: 45%; margin: 0 auto;" id="AltaCategoria">
+            <div class="col-auto" style="margin-top: 15px;">
+                <h:graphicImage value="#{inventarioController.getImagenBase64(inventarioController.inventario)}"
+                                style="width: 145px; height: 145px;"/> 
+            </div>
+
+            <div class="row g-3 align-items-center" style="justify-content: center;">
+                <div class="col-auto" style="width: 30%;">
+                    <br/>
+                    <h5><label class="col-form-label"><b>Proveedor:</b> <br/>#{inventarioController.inventario.ordenAccesorio.proveedor.nombre}</label></h5>
+                </div>
+                <div class="col-auto">
+                    <br/>
+                    <h5><label class="col-form-label"><b>SKU:</b> <br/>#{inventarioController.inventario.ordenAccesorio.datosAccesorio.sku}</label></h5>
+                </div>
+            </div>
+            <br/>
+
+            <div class="row g-3 align-items-center"  style="justify-content: center;">
+                <div class="col-auto" style="width: 30%;">
+                    <br/>
+                    <h6><label class="col-form-label">Precio inicial</label></h6>
+                </div>
+                <div class="col-auto">
+                    <br/>
+                    <h:inputText class ="form-control" 
+                                 id="PrecioInicial"
+                                 value = "#{inventarioController.inventario.ordenAccesorio.precioInicial}"/>
+                </div>
+            </div>
+
+            <div class="row g-3 align-items-center" style="justify-content: center; margin-bottom: 16px;">
+                <div class="text-center" >
+                    <br/><br/>
+                    <h:commandButton class="btn btn-primary" value="Guardar" action="#{inventarioController.corregirPrecioInicioProveedorSugerido(inventarioController.inventario)}"/>
+                    <h:commandButton style="margin-left: 1%;" class="btn btn-outline-danger" value="Regresar" action="#{inventarioController.mainClean('ConsultaProveedorSugerido')}"/>
+                    <br/><br/>
+                </div>
+            </div>
+        </h:form>
+    </h:body>
+
+    <h:messages class="alert alert-primary"/>
+
+   
+</html>
+

@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Editar proveedor</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.4.0/dist/css/bootstrap.min.css" />
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta http-equiv="X-UA-Conpatible" content="IE=edge"/>
+
+        <link 
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+            rel="stylesheet" 
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+            crossorigin="anonymous"/>
+    </h:head>
+    <h:body>
+        <!--Encabezado-->
+        <nav class="navbar navbar-expand-lg navar-light" style="background-color: #250aca82;">
+            <div class="container-fluid" style="margin-left:4%;">
+                <a class="navbar-brand" href="faces/../../menu.xhtml">
+                    <div style="background-color: white; border-radius: 50%;">
+                        <h:graphicImage value="../../Imagenes/logoPNG.png"  style="width: 190px; height: 100px; border-radius: 21px;"/>
+                    </div>
+                </a>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav" style="width: 40%;">
+                        <li class="navbar-nav" style="margin-left:4%;">
+                            <h4 class="text-white">Editar proveedor</h4>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <!--Formulario-->    
+        <h:form class="text-center" style="width: 70%; margin: 0 auto;" id="EditarProveedor">
+            <br/><br/>
+
+            <div class="container">
+                <div class="row">
+                    <!-- Primera columna -->
+                    <div class="col-md-6">
+                        <div class="mb-3 row">
+                            <label for="Nombre" class="col-sm-4 col-form-label text-end">Nombre</label>
+                            <div class="col-sm-8">
+                                <h:inputText class="form-control" id="Nombre" value="#{proveedorController.proveedor.nombre}"/>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="Lada" class="col-sm-4 col-form-label text-end">Lada</label>
+                            <div class="col-sm-8">
+                                <h:inputText class="form-control" id="Lada" style="width: 80px;" value="#{proveedorController.proveedor.lada}"/>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="Telefono" class="col-sm-4 col-form-label text-end">Teléfono</label>
+                            <div class="col-sm-8">
+                                <h:inputText class="form-control" id="telefono" value="#{proveedorController.proveedor.telefono}"/>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="Correo" class="col-sm-4 col-form-label text-end">Correo</label>
+                            <div class="col-sm-8">
+                                <h:inputText class="form-control" id="Correo" value="#{proveedorController.proveedor.correo}"/>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="Direccion" class="col-sm-4 col-form-label text-end">Dirección</label>
+                            <div class="col-sm-8">
+                                <h:inputText class="form-control" id="Direccion" value="#{proveedorController.proveedor.direccion}"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Segunda columna -->
+                    <div class="col-md-6">
+                        <div class="mb-3 row">
+                            <label for="Tipo" class="col-sm-4 col-form-label text-end">Categoría</label>
+                            <div class="col-sm-8">
+                                <h:selectOneMenu class="form-select" id="idCategoria" value="#{proveedorController.proveedor.tipo}">
+                                    <f:selectItems value="#{proveedorController.findCategoriasList(proveedorController.proveedor.tipo.idCategoria)}" var="item" itemLabel="#{item.nombre}" itemValue="#{item}" />
+                                    <f:converter converterId="categoriaConverter" />
+                                </h:selectOneMenu> 
+
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-sm-4 col-form-label text-end">Días de abasto</label>
+                            <div style="display: flex; flex-direction: column; align-items: flex-start; margin-left: 230px;">
+                                <div style="margin-bottom: 10px;">
+                                    <h:selectBooleanCheckbox id="lunes" value="#{proveedorController.diasSemana.lunes}" style="margin-right: 5px;" />
+                                    <label for="lunes" style="color: #000; font-size: 16px;">Lunes</label>
+                                </div>
+                                <div style="margin-bottom: 10px;">
+                                    <h:selectBooleanCheckbox id="martes" value="#{proveedorController.diasSemana.martes}" style="margin-right: 5px;" />
+                                    <label for="martes" style="color: #000; font-size: 16px;">Martes</label>
+                                </div>
+                                <div style="margin-bottom: 10px;">
+                                    <h:selectBooleanCheckbox id="miercoles" value="#{proveedorController.diasSemana.miercoles}" style="margin-right: 5px;" />
+                                    <label for="miercoles" style="color: #000; font-size: 16px;">Miércoles</label>
+                                </div>
+                                <div style="margin-bottom: 10px;">
+                                    <h:selectBooleanCheckbox id="jueves" value="#{proveedorController.diasSemana.jueves}" style="margin-right: 5px;" />
+                                    <label for="jueves" style="color: #000; font-size: 16px;">Jueves</label>
+                                </div>
+                                <div style="margin-bottom: 10px;">
+                                    <h:selectBooleanCheckbox id="viernes" value="#{proveedorController.diasSemana.viernes}" style="margin-right: 5px;" />
+                                    <label for="viernes" style="color: #000; font-size: 16px;">Viernes</label>
+                                </div>
+                                <div style="margin-bottom: 10px;">
+                                    <h:selectBooleanCheckbox id="sabado" value="#{proveedorController.diasSemana.sabado}" style="margin-right: 5px;" />
+                                    <label for="sabado" style="color: #000; font-size: 16px;">Sábado</label>
+                                </div>
+                                <div style="margin-bottom: 10px;">
+                                    <h:selectBooleanCheckbox id="domingo" value="#{proveedorController.diasSemana.domingo}" style="margin-right: 5px;" />
+                                    <label for="domingo" style="color: #000; font-size: 16px;">Domingo</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-center">
+                        <br/><br/>
+                        <h:commandButton class="btn btn-primary" value="Guardar" action="#{proveedorController.update()}"/>
+                        <h:commandButton style="margin-left: 1%;" class="btn btn-outline-danger" value="Regresar" action="#{proveedorController.mainClean('ConsultaProveedor')}"/>
+                    </div>
+                </div>
+            </div>
+            <br/><br/>
+        </h:form>
+        <br/><br/>
+    </h:body>
+
+    <h:messages class="alert alert-primary" style="margin-top: 0%;"/>
+
+</html>
+

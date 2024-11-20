@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Agregar producto</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.4.0/dist/css/bootstrap.min.css" />
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta http-equiv="X-UA-Conpatible" content="IE=edge"/>
+
+        <link 
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+            rel="stylesheet" 
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+            crossorigin="anonymous"/>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    </h:head>
+    <h:body>
+        <!--Encabezado-->
+        <nav class="navbar navbar-expand-lg navar-light" style="background-color: #250aca82;">
+            <div class="container-fluid" style="margin-left:4%;">
+                <a class="navbar-brand" href="../menu.xhtml">
+                    <div style="background-color: white; border-radius: 50%;">
+                        <h:graphicImage value="../Imagenes/logoPNG.png"   style="width: 190px; height: 100px; border-radius: 21px;"/>
+                    </div>
+                </a>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav" style="width: 40%;">
+                        <li class="navbar-nav" style="margin-left:4%;">
+                            <h4 class="text-white">Agregar producto</h4>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <script>
+            $(document).ready(function () {
+                if ('#{datosAccesorioController.inventarioNuevoEstilo.ordenAccesorio.proveedor.nombre}' === '') {
+                    $("#inputProveedorNuevoEstiloDiv").show();
+                    $("#dataProveedorNuevoEstilo").hide();
+                } else {
+                    $("#inputProveedorNuevoEstiloDiv").hide();
+                    $("#dataProveedorNuevoEstilo").show();
+                }
+            });
+
+        </script>
+        <h:form enctype="multipart/form-data" class="text-center" style="width: 50%; margin: 0 auto;" id="NuevoEstilo">
+            <br/>
+
+            <div id="dataProveedorNuevoEstilo" class="row g-3 text-center border border-2 border-primary rounded" style="justify-content: center; padding-bottom: 18px;">
+                <div class="col-auto" style = "text-align: left;">
+                    <br/>
+                    <b><label class="col-form-label text-primary">Proveedor:</label></b>
+                    <label class="col-form-label text-primary">#{datosAccesorioController.inventarioNuevoEstilo.ordenAccesorio.proveedor.nombre}</label>
+                    <br/>
+
+                    <b><label class="col-form-label text-primary">SKU:</label></b>
+                    <label class="col-form-label text-primary ">#{datosAccesorioController.inventarioNuevoEstilo.ordenAccesorio.datosAccesorio.sku}</label>
+                    <br/>
+                </div>
+                <div class="col-auto" id="divImage">
+                    <img src="data:image/jpeg;base64,#{datosAccesorioController.procesarArchivo()}" style="max-width: 130px; max-height: 135px;"/>
+                </div>
+
+            </div>
+
+            <!--<div class="row g-3 align-items-center">
+                <div class="col-auto" style="width: 18%; margin-left:15%;">
+                    <br/>
+                    <label class="col-form-label">Categoría:</label>
+                </div>
+                <div class="col-auto">
+                    <h:selectOneMenu class="form-select" value="#{datosAccesorioController.inventarioNuevoEstilo.ordenAccesorio.datosAccesorio.categoria}" 
+                                     onchange="submit()" 
+                                     converter="categoriaConverter"
+                                     style="min-width: 210px;">
+                        <f:selectItems value="#{categoriaController.findAll()}" var="item" itemLabel="#{item.nombre}" itemValue="#{item}" />
+
+                    </h:selectOneMenu>
+                </div>
+            </div>-->
+
+            <div class="row g-3 align-items-center">
+                <div class="col-auto" style="width: 18%; margin-left:15%;">
+                    <br/>
+                    <label class="col-form-label">Tipo de producto:</label>
+                </div>
+                <div class="col-auto">
+                    <h:selectOneMenu class="form-select" value="#{datosAccesorioController.inventarioNuevoEstilo.ordenAccesorio.tipoProducto}" 
+                                     onchange="submit()" 
+                                     converter="tipoProductoConverter"
+                                     style="min-width: 210px;">
+                        <f:selectItems value="#{tipoProductoController.findAll()}" var="item" itemLabel="#{item.nombre}" itemValue="#{item}" />
+
+                    </h:selectOneMenu>
+                </div>
+            </div>
+            
+            <div class="row g-3 align-items-center">
+                <div class="col-auto" style="width: 18%; margin-left:15%;">
+                    <br/>
+                    <label class="col-form-label">Nombre:</label>
+                </div>
+                <div class="col-auto">
+                    <h:inputText class ="form-control" 
+                                 id="Nombre"
+                                 value = "#{datosAccesorioController.inventarioNuevoEstilo.ordenAccesorio.datosAccesorio.nombre}"/>
+                </div>
+            </div>
+
+            <div class="row g-3 align-items-center">
+                <div class="col-auto" style="width: 18%; margin-left:15%;">
+                    <br/>
+                    <label class="col-form-label">Precio inicial:</label>
+                </div>
+                <div class="col-auto">
+                    <h:inputText class ="form-control" 
+                                 id="PrecioInicial"
+                                 value = "#{datosAccesorioController.inventarioNuevoEstilo.ordenAccesorio.precioInicial}"/>
+                </div>
+            </div>
+
+            <div class="row g-3 align-items-center">
+                <div class="col-auto" style="width: 18%; margin-left:15%;">
+                    <br/>
+                    <label class="col-form-label">Sugerir precio:</label>
+                </div>
+                <div class="col-auto">
+                    <h:selectOneMenu class="form-select" value="#{datosAccesorioController.sugerirPrecio}" 
+                                     onchange="submit()" 
+                                     style="min-width: 210px;">
+                        <f:selectItems value="#{datosAccesorioController.sugerirPrecioList}" var="item" itemLabel="#{item}" itemValue="#{item}" />
+
+                    </h:selectOneMenu>
+                </div>
+            </div>
+
+            <div class="row g-3 align-items-center">
+                <div class="col-auto" style="width: 18%; margin-left:15%;">
+                    <br/>
+                    <label class="col-form-label">Cantidad:</label>
+                </div>
+                <div class="col-auto">
+                    <h:inputText class ="form-control" 
+                                 id="Cantidad"
+                                 value = "#{datosAccesorioController.inventarioNuevoEstilo.enStock}"/>
+                </div>
+            </div>
+
+            <div class="row g-3 align-items-center" style="margin-bottom: 9px;">
+                <div class="col-auto" style="width: 18%; margin-left:15%;">
+                    <br/>  
+                    <label class="col-form-label">Descripción:</label>
+                </div>
+                <div class="col-auto">
+                    <h:inputText class ="form-control" 
+                                 id="Descripcion"
+                                 value = "#{datosAccesorioController.inventarioNuevoEstilo.ordenAccesorio.datosAccesorio.descripcion}"/>
+                </div>
+            </div>
+
+            <div class="row g-3 align-items-center">
+                <div class="text-center" >
+                    <br/><br/>
+                    <h:commandButton class="btn btn-primary" value="Guardar"
+                                     style="width: 135px;"
+                                     action="#{datosAccesorioController.prepareProductoNuevoWizard3(
+                                               datosAccesorioController.inventarioNuevoEstilo, datosAccesorioController.sugerirPrecio)}"/>
+                    <h:commandButton class="btn btn-secondary" value="Cancelar " 
+                                     style="margin-left: 2%; width: 135px;"
+                                     action="#{datosAccesorioController.limpiarNuevoEstiloParte2()}"/>
+                    <br/><br/>
+                    <h:commandButton style="margin-left: 1%;" class="btn btn-outline-danger" value="Regresar" action="#{datosAccesorioController.regresar('NuevoEstiloAñadirProveedor')}"/>    
+                </div>
+            </div>
+        </h:form>
+        <br/><br/>
+    </h:body>
+
+    <h:messages class="alert alert-primary" />
+
+</html>
+

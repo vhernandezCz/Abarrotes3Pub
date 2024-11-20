@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Tipos de productos</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.4.0/dist/css/bootstrap.min.css" />
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta http-equiv="X-UA-Conpatible" content="IE=edge"/>
+
+        <link 
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+            rel="stylesheet" 
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+            crossorigin="anonymous"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <!--Encabezado-->
+            <nav class="navbar navbar-expand-lg navar-light" style="background-color: #250aca82;">
+                <div class="container-fluid" style="margin-left:4%;">
+                    <a class="navbar-brand" href="../../menu.xhtml">
+                        <div style="background-color: white; border-radius: 50%;">
+                            <h:graphicImage value="../../Imagenes/logoPNG.png" style="width: 190px; height: 100px; border-radius: 21px;"/>
+                        </div>
+                    </a>
+                    <div class="collapse navbar-collapse">
+                        <ul class="navbar-nav" style="width: 40%;">
+                            <li class="navbar-nav" style="margin-left:4%;">
+                                <h4 class="text-white">Tipos de productos</h4>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="container">  
+                <br/>
+                <h:commandButton class="btn btn-success"  
+                                 value="Nuevo tipo de producto" 
+                                 action="#{tipoProductoController.mainClean('AltaTipoProducto')}"
+                                 style="margin-left: 85%; margin-bottom: 1%;"></h:commandButton>
+
+                <div class="row g-3 text-center">
+                    <br/><br/>
+                    <h:dataTable value="#{tipoProductoController.findAll()}" var="c" border="0">
+                        <h:column>
+                            <f:facet name="header"><h4 class="btn-light">Nombre</h4></f:facet>
+                            <h5> #{c.nombre}</h5>
+                        </h:column>            
+                        <h:column>
+                            <f:facet name="header"><h4 class="btn-light"><h:graphicImage value="../../Imagenes/edit.png"  style="width: 25px; height: 25px;"/></h4></f:facet>
+                            <h:commandButton class="btn btn-outline-primary" value="Editar" action="#{tipoProductoController.prepareEdit(c)}"/>
+                        </h:column>       
+                        <h:column>
+                            <f:facet name="header"><h4 class="btn-light"><h:graphicImage value="../../Imagenes/basura.png"  style="width: 25px; height: 25px;"/></h4></f:facet>
+                            <h:commandButton class="btn btn-outline-danger" value="Eliminar" action="#{tipoProductoController.prepareDelete()}" rendered="#{!tipoProductoController.confirm}"/>
+                            <h:commandButton class="btn btn-outline-danger" value="No" rendered="#{tipoProductoController.confirm}" action="#{tipoProductoController.mainClean('ConsultaTipoProducto')}"/>
+                            <h:commandButton class="btn btn-outline-success" value="Si" rendered="#{tipoProductoController.confirm}" action="#{tipoProductoController.delete(c)}"/>
+                        </h:column>
+                    </h:dataTable>
+
+                </div>
+            </div>
+            <div style="position: relative; margin-top: 4%">
+                <h:messages class="alert alert-primary"/>
+            </div>
+        </h:form>
+    </h:body>
+
+    <footer style="background-color: #250aca82; position: absolute; bottom: 0;
+            width: 100%; height: 10%">
+        <p class="text-center">
+
+        </p>
+        <br/><br/><br/>
+    </footer>
+</html>
+
