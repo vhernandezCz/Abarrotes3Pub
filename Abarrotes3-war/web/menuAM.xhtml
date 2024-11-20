@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Abarrotes Cázares</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+              rel="stylesheet" 
+              integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
+              crossorigin="anonymous"/>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navar-light" style="background-color: #250aca82;">  
+            <div class="container-fluid" style="margin-left:4%;">
+                <a class="navbar-brand" href="#">
+                    <div style="background-color: white; border-radius: 50%;">
+                        <h:graphicImage value="/resources/Imagenes/logoPNG.png"  style="width: 190px; height: 100px; border-radius: 21px;"/>
+                    </div>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">                       
+                        <li class="nav-item dropdown" style="margin-left:5%;">
+                            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-weight: 600;">Ventas</a>
+                            <ul class="dropdown-menu" style="background-color: #BDE0FE">
+                                <li><a class="dropdown-item text-body-tertiary" href="faces/Ventas/PinesVendidos.xhtml">Registro de vendidas</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown" style="margin-left:5%;">
+                            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-weight: 600;">Abastecer</a>
+                            <ul class="dropdown-menu" style="background-color: #BDE0FE">
+                                <li><a class="dropdown-item text-body-tertiary" href="faces/Productos/AgregarProductoEstiloExistente.xhtml">Agregar producto existente</a></li>
+                                <li><a class="dropdown-item text-body-tertiary" href="faces/Productos/NuevoEstiloAñadirProveedor.xhtml">Registrar producto nuevo</a></li>
+                                <li><a class="dropdown-item text-body-tertiary" href="faces/Productos/ConsultaInventario.xhtml">Consulta de inventario</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown" style="margin-left:5%;">
+                            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-weight: 600;">Análisis</a>
+                            <ul class="dropdown-menu" style="background-color: #BDE0FE">
+                                <li><a class="dropdown-item text-body-tertiary">Análisis de ventas</a></li>
+                                <li><a class="dropdown-item text-body-tertiary" href="faces/Analisis/ConsultaBitacora.xhtml">Bitácora</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown" style="margin-left:5%;">
+                            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-weight: 600;">Proveedores</a>
+                            <ul class="dropdown-menu" style="background-color: #BDE0FE">
+                                <li><a class="dropdown-item text-body-tertiary" href="faces/Proveedor/ProveedorSugerido/ConsultaProveedorSugerido.xhtml">Proveedores sugeridos</a></li>
+                                <li><a class="dropdown-item text-body-tertiary" href="faces/Proveedor/ConsultaProveedor.xhtml">Consulta proveedores</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown" style="margin-left:5%;">
+                            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-weight: 600;">Configuración</a>
+                            <ul class="dropdown-menu" style="background-color: #BDE0FE">
+                                <!--                                <li><a class="dropdown-item text-body-tertiary" href="faces/Configuracion/ConfiguracionDeducciones.xhtml">Configuración de gastos</a></li>-->
+                                <li><a class="dropdown-item text-body-tertiary" href="faces/Configuracion/TipoProducto/ConsultaTipoProducto.xhtml">Consulta de tipos de producto</a></li>
+                                <li><a class="dropdown-item text-body-tertiary" href="faces/Configuracion/Categoria/ConsultaCategoria.xhtml">Consulta categorías</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown" style="margin-left:5%;">
+                            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-weight: 600;">Usuario</a>
+                            <ul class="dropdown-menu" style="background-color: #BDE0FE">
+                                <li><a class="dropdown-item text-body-tertiary" href="faces/Usuario/AltaUsuario.xhtml">Alta de usuarios</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a > 
+                                <h:form>
+                                    <h:commandButton value="Cerrar sesión" class = "btn btn-dark" style="margin-left: 110px;" action="#{loginController.logout}" />
+                                </h:form>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div>
+            <br/>
+            <h2 style="margin-left: 110px;">Bienvenido, Administrador #{loginController.username}</h2>
+        </div>
+
+        <footer style="background-color: #250aca82; position: absolute; bottom: 0;
+                width: 100%; height: 10%">
+            <p class="text-center">
+
+            </p>
+            <br/><br/><br/>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
+        crossorigin="anonymous"></script>
+    </body>
+</html>

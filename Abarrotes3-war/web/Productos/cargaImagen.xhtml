@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta http-equiv="X-UA-Conpatible" content="IE=edge"/>
+
+        <link 
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+            rel="stylesheet" 
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+            crossorigin="anonymous"/>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <style>
+            .success-message {
+                color: green; /* Color del texto para el mensaje de éxito */
+                font-size: 18px; /* Tamaño de fuente para el mensaje de éxito */
+                font-family: Arial, sans-serif; /* Tipo de fuente para el mensaje de éxito */
+                background-color: white; /* Color de fondo para el mensaje de éxito */
+                padding: 10px; /* Espaciado interior del mensaje de éxito */
+                border-radius: 5px; /* Borde redondeado para el mensaje de éxito */
+            }
+
+            .error-message {
+                color: red; /* Color del texto para el mensaje de error */
+                font-size: 18px; /* Tamaño de fuente para el mensaje de error */
+                font-family: Arial, sans-serif; /* Tipo de fuente para el mensaje de error */
+                background-color: white; /* Color de fondo para el mensaje de error */
+                padding: 10px; /* Espaciado interior del mensaje de error */
+                border-radius: 5px; /* Borde redondeado para el mensaje de error */
+            }
+            #uploadForm {
+                text-align: -webkit-center;
+                width:700px;
+            }
+        </style>
+        <script>
+            $(document).ready(function () {
+                $("#uploadForm").submit(function (e) {
+                    e.preventDefault(); // Evitar que el formulario se envíe de forma predeterminada
+
+                    // Validar si se ha seleccionado un archivo
+                    var fileInput = document.getElementById('file');
+                    if (fileInput.files.length === 0) {
+                        $("#resultado").html("¡Por favor, seleccione una imagen!");
+                        return; // No se envía la solicitud AJAX si no se ha seleccionado una imagen
+                    }
+
+                    var formData = new FormData(this); // Obtener los datos del formulario
+
+                    $.ajax({
+                        url: $(this).attr('action'),
+                        type: "POST",
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function (data) {
+                            // Mostrar el mensaje de éxito con la clase CSS correspondiente
+                            $("#resultado").html("<div class='success-message'>" + data + "</div>");
+                            // Limpiar el formulario después de cargar la imagen
+                            $('#uploadForm')[0].reset();
+                        },
+                        error: function () {
+                            // Mostrar el mensaje de error con la clase CSS correspondiente
+                            $("#resultado").html("<div class='error-message'>Error al cargar la imagen</div>");
+                        }
+                    });
+                });
+            });
+        </script>
+    </head>
+    <body style="text-align: -webkit-center;">
+        <form id="uploadForm" action="/Abarrotes2-war/UploadImageServlet" method="post" enctype="multipart/form-data">
+            <div class="row g-3 align-items-center" style="justify-content: center;">
+                <br/>
+                <div class="col-auto">
+                    <label style="margin-left: 10px; margin-right: 20px;">Imagen:</label>
+                </div>
+                <div class="col-auto">
+                    <input type="file" class="form-control" name="file" id="file" accept="image/*"/>
+                </div>
+                <input type="submit" value="Subir Imagen" class="form-control" style ="width: 160px;"/>   
+            </div>
+        </form>
+        <div id="resultado"></div> <!-- Aquí se mostrará el mensaje -->
+    </body>
+</html>
